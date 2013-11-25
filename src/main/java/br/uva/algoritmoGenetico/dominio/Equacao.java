@@ -9,27 +9,28 @@ package br.uva.algoritmoGenetico.dominio;
  */
 public class Equacao {
 
-    private long coeficienteX;
-    private long coeficienteY;
-    private long coeficienteZ;
+    private short coeficienteX;
+    private short coeficienteY;
+    private short coeficienteZ;
     private String funcaoEmz;
 
     public Equacao() {}
 
-    public Equacao(long coeficienteX, long coeficienteY, long coeficienteZ, String funcaoEmz) {
+    public Equacao(short coeficienteX, short coeficienteY, short coeficienteZ, String funcaoEmz) {
         this.coeficienteX = coeficienteX;
         this.coeficienteY = coeficienteY;
         this.coeficienteZ = coeficienteZ;
         this.funcaoEmz = funcaoEmz;
     }
 
-    public Double aplicaFuncao(Double operando){
-        Double rad = Math.toRadians(operando);
+    public Short aplicaFuncao(Short operando){
+        Double radTemp = Math.toRadians(operando);
+        Short rad = radTemp.shortValue();
         switch (funcaoEmz){
             case "sin":
-                return Math.sin(rad);
+                return ((Double)Math.sin(rad)).shortValue();
             case "cos":
-                return Math.cos(rad);
+                return ((Double)Math.cos(rad)).shortValue();
             case "vazio":
                 return operando;
             default:
@@ -37,27 +38,27 @@ public class Equacao {
         }
     }
 
-    public long getCoeficienteX() {
+    public short getCoeficienteX() {
         return coeficienteX;
     }
 
-    public void setCoeficienteX(long coeficienteX) {
+    public void setCoeficienteX(short coeficienteX) {
         this.coeficienteX = coeficienteX;
     }
 
-    public long getCoeficienteY() {
+    public short getCoeficienteY() {
         return coeficienteY;
     }
 
-    public void setCoeficienteY(long coeficienteY) {
+    public void setCoeficienteY(short coeficienteY) {
         this.coeficienteY = coeficienteY;
     }
 
-    public long getCoeficienteZ() {
+    public short getCoeficienteZ() {
         return coeficienteZ;
     }
 
-    public void setCoeficienteZ(long coeficienteZ) {
+    public void setCoeficienteZ(short coeficienteZ) {
         this.coeficienteZ = coeficienteZ;
     }
 

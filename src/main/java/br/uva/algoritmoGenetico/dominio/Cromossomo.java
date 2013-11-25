@@ -25,10 +25,10 @@ public class Cromossomo {
         this.cromossomo = cromossomo;
     }
 
-    public void setDecimalCromossomoX(long value) {
+    public void setDecimalCromossomoX(int value) {
         int index = 0;
-        while ((value != 0L) || (index > 15)) {
-            if (value % 2L != 0) {
+        while ((value != 0) || (index > 15)) {
+            if (value % 2 != 0) {
                 cromossomo.set(index);
             }
             ++index;
@@ -38,10 +38,10 @@ public class Cromossomo {
             System.out.print("ERRO !!!");
     }
 
-    public void setDecimalCromossomoY(long value) {
+    public void setDecimalCromossomoY(int value) {
         int index = 16;
-        while ((value != 0L) || (index > 31)) {
-            if (value % 2L != 0) {
+        while ((value != 0) || (index > 31)) {
+            if (value % 2 != 0) {
                 cromossomo.set(index);
             }
             ++index;
@@ -51,10 +51,10 @@ public class Cromossomo {
             System.out.print("ERRO !!!");
     }
 
-    public void setDecimalCromossomoZ(long value) {
+    public void setDecimalCromossomoZ(int value) {
         int index = 32;
-        while ((value != 0L) || (index > 47)) {
-            if (value % 2L != 0) {
+        while ((value != 0) || (index > 47)) {
+            if (value % 2 != 0) {
                 cromossomo.set(index);
             }
             ++index;
@@ -64,11 +64,11 @@ public class Cromossomo {
             System.out.print("ERRO !!!");
     }
 
-    public BitSet convert(long value) {
+    public BitSet convert(int value) {
         BitSet bits = new BitSet();
         int index = 0;
-        while (value != 0L) {
-            if (value % 2L != 0) {
+        while (value != 0) {
+            if (value % 2 != 0) {
                 bits.set(index);
             }
             ++index;
@@ -77,29 +77,29 @@ public class Cromossomo {
         return bits;
     }
 
-    public long retornaX() {
-        long value = 0L;
+    public short retornaX() {
+        short value = 0;
         for (int i = 0; i <= 15; ++i) {
-            value += cromossomo.get(i) ? (1L << i) : 0L;
+            value += cromossomo.get(i) ? (1 << i) : 0;
         }
         return value;
     }
 
-    public long retornaY() {
-        long value = 0L;
+    public short retornaY() {
+        short value = 0;
         int desloc = 0;
         for (int i = 16; i <= 31; ++i) {
-            value += cromossomo.get(i) ? (1L << desloc) : 0L;
+            value += cromossomo.get(i) ? (1 << desloc) : 0;
             desloc++;
         }
         return value;
     }
 
-    public long retornaZ() {
-        long value = 0L;
+    public short retornaZ() {
+        short value = 0;
         int desloc = 0;
         for (int i = 32; i <= 47; ++i) {
-            value += cromossomo.get(i) ? (1L << desloc) : 0L;
+            value += cromossomo.get(i) ? (1 << desloc) : 0;
             desloc++;
         }
         return value;

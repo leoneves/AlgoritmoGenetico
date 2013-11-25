@@ -22,11 +22,27 @@ public class IniciarPopulacao {
         populacao = new ArrayList<Individuo>();
         for(int i=1;i <= this.tamanhoPopulacao;i++){
             Individuo individuo = new Individuo();
-            individuo.setX(new Random().nextInt(1 << 15));
-            individuo.setY(new Random().nextInt(1 << 15));
-            individuo.setZ(new Random().nextInt(1 << 15));
+            individuo.setX((short)new Random().nextInt(1 << 15));
+            individuo.setY((short)new Random().nextInt(1 << 15));
+            individuo.setZ((short)new Random().nextInt(1 << 15));
             populacao.add(individuo);
         }
+    }
+
+    public Individuo selecaoCrossOver(){
+        Double valorRoleta = new Random().nextDouble();
+        Individuo crossover = null;
+        Double [] intervaloSelecao = new Double[2];
+        intervaloSelecao[0] = 0d;
+        for (Individuo individuo : populacao){
+            intervaloSelecao[1] = individuo.getProbabilidadeselecaoCrossover() + intervaloSelecao[0];
+            if(valorRoleta >= intervaloSelecao[0] && valorRoleta < intervaloSelecao[1]){
+                crossover = individuo;
+                break;
+            }
+            intervaloSelecao[0] = intervaloSelecao[1];
+        }
+        return crossover;
     }
 
     public Integer getTamanhoPopulacao() {

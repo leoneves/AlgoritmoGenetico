@@ -49,6 +49,12 @@
     <label class="formee-medium">Tamanho da População</label>
     <input type="text" name="tamanhoPopulacao">
     <br><br>
+    <label class="formee-medium">Número de gerações</label>
+    <input type="text" name="numeroGeracoes">
+    <br><br>
+    <label class="formee-medium">Taxa de CrossOver</label>
+    <input type="text" name="taxaCrossover">
+    <br><br>
     <input type="submit" value="Maximizar função"/>
 </form>
 </body>

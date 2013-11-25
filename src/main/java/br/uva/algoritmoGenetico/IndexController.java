@@ -6,6 +6,7 @@ import br.com.caelum.vraptor.Result;
 import br.uva.algoritmoGenetico.dominio.*;
 import br.uva.algoritmoGenetico.util.Util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Resource
@@ -25,9 +26,13 @@ public class IndexController {
     }
 
     @Path("/maximizarFuncao")
-    public void maximizarFuncao(long coefX, long coefY, String funcao ,long coefZ, Integer tamanhoPopulacao){
+    public void maximizarFuncao(short coefX, short coefY, String funcao ,short coefZ, Integer tamanhoPopulacao, Integer numeroGeracoes, float taxaCrossover){
         Equacao equacao = new Equacao(coefX,coefY,coefZ,funcao);
         Geracoes geracoes = new Geracoes();
+        geracoes.setNumeroDeGeracoes(numeroGeracoes);
+
+        //Cria classe para controlar crossover
+        Crossover crossover = new Crossover(taxaCrossover);
 
         //Iniciar População aleatória
         IniciarPopulacao iniciarPopulacao = new IniciarPopulacao();
@@ -38,7 +43,17 @@ public class IndexController {
 
 
         for(int i=0;i<=geracoes.getNumeroDeGeracoes();i++){
+            //Avaliação prévia
+            Avaliacao.avaliacao(populacao,equacao);
+
+            List<Individuo> novosDoCrossover = new ArrayList<Individuo>();
             //faz crossover
+            for (Individuo individuo : populacao){
+                if(crossover.fazCrossOver(individuo)){
+                    Individuo selecionado = iniciarPopulacao.selecaoCrossOver();
+                    novosDoCrossover.add(crossover.realizarCrossover(individuo, selecionado));
+                }
+            }
 
             //tem mutação
 
