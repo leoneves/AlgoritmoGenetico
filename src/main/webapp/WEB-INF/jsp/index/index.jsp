@@ -13,26 +13,43 @@
 </head>
 <body>
 
-<form class="formee">
+<form class="formee" action="/maximizarFuncao">
     <fieldset>
         <legend>Equação</legend>
         <div style="margin: 55px;">
             <lu class="formee-list">
                 <li>
-                    <input type="text" style="width: 45px">
+                    <input type="text" name="coefX" style="width: 45px">
                 </li>
                 <li>
                     <label class="formee-medium">X+</label>
                 </li>
                 <li>
-                    <input type="text" style="width: 45px">
+                    <input type="text" name="coefY" style="width: 45px">
                 </li>
                 <li>
                     <label class="formee-medium">Y+</label>
                 </li>
+                <li>
+                    <select name="funcao" id="funcao">
+                        <option value="vazio"></option>
+                        <option value="sin">sin</option>
+                        <option value="cos">cos</option>
+                    </select>
+                </li>
+                <li>
+                    <input type="text" name="coefZ" style="width: 45px">
+                </li>
+                <li>
+                    <label class="formee-medium">Z</label>
+                </li>
             </lu>
         </div>
     </fieldset>
+    <label class="formee-medium">Tamanho da População</label>
+    <input type="text" name="tamanhoPopulacao">
+    <br><br>
+    <input type="submit" value="Maximizar função"/>
 </form>
 </body>
 </html>
