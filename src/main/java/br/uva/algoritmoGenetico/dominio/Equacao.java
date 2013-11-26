@@ -9,28 +9,26 @@ package br.uva.algoritmoGenetico.dominio;
  */
 public class Equacao {
 
-    private short coeficienteX;
-    private short coeficienteY;
-    private short coeficienteZ;
+    private float coeficienteX;
+    private float coeficienteY;
+    private float coeficienteZ;
     private String funcaoEmz;
 
     public Equacao() {}
 
-    public Equacao(short coeficienteX, short coeficienteY, short coeficienteZ, String funcaoEmz) {
+    public Equacao(float coeficienteX, float coeficienteY, float coeficienteZ, String funcaoEmz) {
         this.coeficienteX = coeficienteX;
         this.coeficienteY = coeficienteY;
         this.coeficienteZ = coeficienteZ;
         this.funcaoEmz = funcaoEmz;
     }
 
-    public Short aplicaFuncao(Short operando){
-        Double radTemp = Math.toRadians(operando);
-        Short rad = radTemp.shortValue();
+    public Float aplicaFuncao(float operando){
         switch (funcaoEmz){
             case "sin":
-                return ((Double)Math.sin(rad)).shortValue();
+                return ((Double)Math.sin(operando)).floatValue();
             case "cos":
-                return ((Double)Math.cos(rad)).shortValue();
+                return ((Double)Math.cos(operando)).floatValue();
             case "vazio":
                 return operando;
             default:
@@ -38,7 +36,7 @@ public class Equacao {
         }
     }
 
-    public short getCoeficienteX() {
+    public float getCoeficienteX() {
         return coeficienteX;
     }
 
@@ -46,7 +44,7 @@ public class Equacao {
         this.coeficienteX = coeficienteX;
     }
 
-    public short getCoeficienteY() {
+    public float getCoeficienteY() {
         return coeficienteY;
     }
 
@@ -54,7 +52,7 @@ public class Equacao {
         this.coeficienteY = coeficienteY;
     }
 
-    public short getCoeficienteZ() {
+    public float getCoeficienteZ() {
         return coeficienteZ;
     }
 

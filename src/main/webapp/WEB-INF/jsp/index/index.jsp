@@ -19,13 +19,13 @@
         <div style="margin: 55px;">
             <lu class="formee-list">
                 <li>
-                    <input type="text" name="coefX" style="width: 45px">
+                    <input type="text" name="coefX" style="width: 65px">
                 </li>
                 <li>
                     <label class="formee-medium">X+</label>
                 </li>
                 <li>
-                    <input type="text" name="coefY" style="width: 45px">
+                    <input type="text" name="coefY" style="width: 65px">
                 </li>
                 <li>
                     <label class="formee-medium">Y+</label>
@@ -38,7 +38,7 @@
                     </select>
                 </li>
                 <li>
-                    <input type="text" name="coefZ" style="width: 45px">
+                    <input type="text" name="coefZ" style="width: 65px">
                 </li>
                 <li>
                     <label class="formee-medium">Z</label>
@@ -54,6 +54,9 @@
     <br><br>
     <label class="formee-medium">Taxa de CrossOver</label>
     <input type="text" name="taxaCrossover">
+    <br><br>
+    <label class="formee-medium">Taxa de Mutação</label>
+    <input type="text" name="taxaMutacao">
     <br><br>
     <input type="submit" value="Maximizar função"/>
 </form>

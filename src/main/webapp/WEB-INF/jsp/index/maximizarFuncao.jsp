@@ -15,7 +15,11 @@
 
 <form class="formee">
 
-   <h1>Resultado: ${resultado}</h1>
+    <h1>Resultado: </h1>
+    <br><br>
+    <h3>X: ${x}</h3>
+    <h3>Y: ${y}</h3>
+    <h3>Z: ${z}</h3>
 
 </form>
 </body>

@@ -7,7 +7,7 @@ package br.uva.algoritmoGenetico.dominio;
  * Time: 11:16 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Individuo {
+public class Individuo implements Comparable<Individuo> {
 
     private Cromossomo cromossomo;
     private short x;
@@ -15,16 +15,22 @@ public class Individuo {
     private short z;
     private double valorAvaliacao;
     private double probabilidadeselecaoCrossover;
-    private static float avaliacaoTotal;
+    private static double avaliacaoTotal;
 
     public Individuo() {
         this.cromossomo = new Cromossomo();
     }
 
+    @Override
+    public int compareTo(Individuo o) {
+        return this.getValorAvaliacao() > o.getValorAvaliacao() ? -1 : (this.getValorAvaliacao() < o.getValorAvaliacao() ? 1 : 0);
+    }
+
     public void avaliaIndividuo(Equacao equacao){
-        int primeira = this.getX() * equacao.getCoeficienteX();
-        int segunda =  this.getY() * equacao.getCoeficienteY();
-        int terceira = this.getZ() * equacao.getCoeficienteZ();
+        float primeira = this.getX() * equacao.getCoeficienteX();
+        float segunda =  this.getY() * equacao.getCoeficienteY();
+        float terceira = this.getZ() * equacao.getCoeficienteZ();
+        terceira = equacao.aplicaFuncao(terceira);
         valorAvaliacao = primeira + segunda + terceira;
     }
 
@@ -80,11 +86,11 @@ public class Individuo {
         this.valorAvaliacao = valorAvaliacao;
     }
 
-    public static float getAvaliacaoTotal() {
+    public static double getAvaliacaoTotal() {
         return avaliacaoTotal;
     }
 
-    public static void setAvaliacaoTotal(int avaliacaoTotal) {
+    public static void setAvaliacaoTotal(double avaliacaoTotal) {
         Individuo.avaliacaoTotal = avaliacaoTotal;
     }
 }

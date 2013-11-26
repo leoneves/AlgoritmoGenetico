@@ -12,7 +12,7 @@ import java.util.List;
 public class Avaliacao {
 
     public static void avaliacao(List<Individuo> populacao, Equacao equacao){
-        int somatorioAvaliacao = 0;
+        double somatorioAvaliacao = 0;
         for(Individuo individuo : populacao){
             individuo.avaliaIndividuo(equacao);
             somatorioAvaliacao += individuo.getValorAvaliacao();

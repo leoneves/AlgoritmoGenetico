@@ -1,6 +1,8 @@
 package br.uva.algoritmoGenetico.dominio;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,9 +16,13 @@ public class Geracoes {
 
     private Integer numeroDeGeracoes;
 
-    public List<Individuo> reproducao(List<Individuo> populacaoAtual){
-        List<Individuo> novaPopulacao = new ArrayList<Individuo>();
-        return novaPopulacao;
+    public List<Individuo> reproducao(List<Individuo> populacaoAtual, List<Individuo> novos){
+        Collections.sort(populacaoAtual);
+        Collections.sort(novos);
+        for (int i=0;i < novos.size()-1; i++){
+            populacaoAtual.set((populacaoAtual.size()-1)-i, novos.get(i));
+        }
+        return populacaoAtual;
     }
 
     public List<Individuo> classificaIndividuos(List<Individuo> populacao){

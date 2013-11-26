@@ -14,6 +14,7 @@ public class IndexController {
 
     private final Result result;
     private Util util;
+    private Individuo max;
 
     public IndexController(Result result, Util util) {
         this.result = result;
@@ -26,13 +27,20 @@ public class IndexController {
     }
 
     @Path("/maximizarFuncao")
-    public void maximizarFuncao(short coefX, short coefY, String funcao ,short coefZ, Integer tamanhoPopulacao, Integer numeroGeracoes, float taxaCrossover){
+    public void maximizarFuncao(Float coefX, Float coefY, String funcao ,Float coefZ, Integer tamanhoPopulacao, Integer numeroGeracoes, float taxaCrossover, float taxaMutacao){
+        coefX = coefX == null ? 1 : coefX;
+        coefY = coefY == null ? 1 : coefY;
+        coefZ = coefZ == null ? 1 : coefZ;
+
         Equacao equacao = new Equacao(coefX,coefY,coefZ,funcao);
         Geracoes geracoes = new Geracoes();
         geracoes.setNumeroDeGeracoes(numeroGeracoes);
 
         //Cria classe para controlar crossover
         Crossover crossover = new Crossover(taxaCrossover);
+
+        //cria classe para fazer mutação
+        Mutacao mutacao = new Mutacao(taxaMutacao);
 
         //Iniciar População aleatória
         IniciarPopulacao iniciarPopulacao = new IniciarPopulacao();
@@ -56,15 +64,25 @@ public class IndexController {
             }
 
             //tem mutação
+            for (Individuo individuo : populacao){
+                if(mutacao.fazMutacao(individuo)){
+                    populacao.set(populacao.indexOf(individuo),mutacao.realizaMutacao(individuo));
+                }
+            }
 
             //Avalia
             Avaliacao.avaliacao(populacao,equacao);
+            Avaliacao.avaliacao(novosDoCrossover,equacao);
 
             //classifica e cria nova geração
-            populacao = geracoes.reproducao(populacao);
+            populacao = geracoes.reproducao(populacao, novosDoCrossover);
         }
 
-        result.include("resultado", "Maximizado!!!");
+        max = populacao.get(0);
+
+        result.include("x",max.getX());
+        result.include("y",max.getY());
+        result.include("z",max.getZ());
     }
 
 }
